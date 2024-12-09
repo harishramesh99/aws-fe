@@ -4,16 +4,40 @@ phases:
   install:
     runtime-versions:
       nodejs: 18
-  pre_build:
     commands:
+      # Install dependencies
       - cd frontend
       - npm install
+
+  pre_build:
+    commands:
+      - echo Pre-build started on `date`
+      # Add any environment variable setup or other pre-build steps
+      - cp .env.example .env # If you have environment variables to set up
+
   build:
     commands:
+      - echo Build started on `date`
       - npm run build
-      - npm run export
+      # Run any tests if you have them
+      - npm run test --if-present
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      # Add commands to prepare for deployment
+      - cp -r .next/static .next/standalone/.next/
+      - cp -r public .next/standalone/
 
 artifacts:
+  base-directory: frontend/.next/standalone
   files:
     - '**/*'
-  base-directory: 'frontend/out'
+    - ../.next/static/**/*
+    - ../public/**/*
+  discard-paths: no
+
+cache:
+  paths:
+    - 'frontend/node_modules/**/*'
+    - 'frontend/.next/cache/**/*'
