@@ -6,7 +6,7 @@ phases:
       nodejs: 18
     commands:
       # Install dependencies
-      - cd frontend
+      
       - npm install
 
   pre_build:
