@@ -13,11 +13,11 @@ phases:
     commands:
       - echo Pre-build started on `date`
       # Add any environment variable setup or other pre-build steps
-      - cp .env.example .env # If you have environment variables to set up
+     
 
   build:
     commands:
-      - echo Build started on `date`
+      
       - npm run build
       # Run any tests if you have them
       - npm run test --if-present
