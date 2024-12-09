@@ -19,18 +19,19 @@ phases:
     commands:
       
       - npm run build
-      npm run build
-      - mkdir -p .next/standalone/.next/static
-      - cp -r .next/static .next/standalone/.next/
+      # Run any tests if you have them
+      - npm run test --if-present
 
   post_build:
     commands:
       - echo Build completed on `date`
        
+      - mkdir -p .next/standalone/.next/static
+      - cp -r .next/static .next/standalone/.next/
 artifacts:
   base-directory: frontend/.next/standalone
   files:
-    - '**/*'git a
+    - '**/*'
     - ../.next/static/**/*
     - ../public/**/*
   discard-paths: no
