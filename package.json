@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+  "build": "next build && cp -r .next/static .next/standalone/.next/",
+  "start": "node .next/standalone/server.js",
+  "lint": "next lint"
   },
   "dependencies": {
     "@types/joi": "^17.2.2",
