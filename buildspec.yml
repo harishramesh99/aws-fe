@@ -10,13 +10,14 @@ phases:
   build:
     commands:
       - npm run build
-      - mkdir -p .next/standalone/.next/static
-      - cp -r .next/static/* .next/standalone/.next/static/
-      - cp -r .next/standalone/* /tmp/
-      - cp -r .next/static/* /tmp/.next/static/
-      - cp -r /tmp/* .next/standalone/
+
+ post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo doing nothing
+
 
 artifacts:
   files:
     - '**/*'
-  base-directory: .next/standalone
+ discard-paths: yes
