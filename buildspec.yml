@@ -13,8 +13,8 @@ phases:
 
  post_build:
    commands:
-     - aws s3 cp .next/standalone/ s3://contact-system-frontend/ --recursive
-     - aws s3 cp .next/static/ s3://contact-system-frontend/_next/static/ --recursive
+     - aws s3 cp .next/standalone/ s3://contact-system-frontend/ 
+     - aws s3 cp .next/static/ s3://contact-system-frontend/_next/static/ 
      - aws cloudfront create-invalidation --distribution-id E150KDAL6JW61X --paths "/*"
 
 artifacts:
