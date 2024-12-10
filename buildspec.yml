@@ -10,9 +10,9 @@ phases:
   build:
     commands:
       - npm run build
-      # Remove test command if you don't have tests
+      #   Remove test command if you don't have tests
       # - npm run test --if-present
-
+ 
 artifacts:
   base-directory: .next/standalone
   files:
