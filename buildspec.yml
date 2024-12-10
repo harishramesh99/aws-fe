@@ -10,9 +10,14 @@ phases:
   build:
     commands:
       - npm run build
-      #   Remove test command if you don't have tests
-      # - npm run test --if-present
- 
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - aws s3 rm s3://contact-system-frontend/next/ --recursive
+      - aws s3 cp --recursive .next/standalone s3://contact-system-frontend/
+      - aws cloudfront create-invalidation --distribution-id E150KDAL6JW61X --paths "/*"
+
 artifacts:
   base-directory: .next/standalone
   files:
