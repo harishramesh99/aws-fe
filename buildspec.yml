@@ -21,7 +21,7 @@ artifacts:
  files:
    - '**/*'
 
-  discard-paths: no
+
 
 cache:
  paths:
