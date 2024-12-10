@@ -18,8 +18,10 @@ phases:
      - aws cloudfront create-invalidation --distribution-id E150KDAL6JW61X --paths "/*"
 
 artifacts:
- files:
-   - '**/*'
+  base-directory: out
+  files:
+    - "/*"
+  discard-paths: no
 
 cache:
  paths:

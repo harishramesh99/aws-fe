@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev --turbopack",
   "build": "next build && mkdir -p .next/standalone/.next/static && cp -r .next/static/* .next/standalone/.next/static",
-  "start": "node .next/standalone/server.js",
-  "lint": "next lint"
+ "deploy": "next build && aws s3 sync ./out s3://contact-system-frontend --delete",
+    "lint": "next lint"
+
   },
   "dependencies": {
     "@types/joi": "^17.2.2",
