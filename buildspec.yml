@@ -5,19 +5,35 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - npm ci
+      # Install dependencies
+      
+      - npm install
+
+  pre_build:
+    commands:
+      - echo Pre-build started on `date`
+      # Add any environment variable setup or other pre-build steps
+     
 
   build:
     commands:
+      
       - npm run build
+      # Run any tests if you have them
+      - npm run test --if-present
 
- post_build:
+  post_build:
     commands:
       - echo Build completed on `date`
-      - echo doing nothing
-
-
+       
+      
 artifacts:
+  base-directory: .next/standalone
   files:
     - '**/*'
- discard-paths: yes
+  discard-paths: no
+
+cache:
+  paths:
+    - 'node_modules/**/*'
+    - '.next/cache/**/*'

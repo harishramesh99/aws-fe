@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-  "build": "next build && cp -r .next/static .next/standalone/.next/",
+  "build": "next build && mkdir -p .next/standalone/.next/static && xcopy /E /I .next\\static .next\\standalone\\.next\\static",
   "start": "node .next/standalone/server.js",
   "lint": "next lint"
   },
