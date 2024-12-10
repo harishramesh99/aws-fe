@@ -1,23 +1,27 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      nodejs: 18
-    commands:
-      - npm install
+ install:
+   runtime-versions:
+     nodejs: 18
+   commands:
+     - npm install
 
-  build:
-    commands:
-      - npm run build
+ build:
+   commands:
+     - npm run build
 
-  post_build:
-    commands:
-      - aws s3 rm s3://contact-system-frontend/* --recursive
-      - aws s3 cp .next/standalone/ s3://contact-system-frontend/ --recursive
-      - aws s3 cp .next/static/ s3://contact-system-frontend/_next/static/ --recursive
-      - aws cloudfront create-invalidation --distribution-id E150KDAL6JW61X --paths "/*"
+ post_build:
+   commands:
+     - aws s3 cp .next/standalone/ s3://contact-system-frontend/ --recursive
+     - aws s3 cp .next/static/ s3://contact-system-frontend/_next/static/ --recursive
+     - aws cloudfront create-invalidation --distribution-id E150KDAL6JW61X --paths "/*"
 
 artifacts:
-  files:
-    - '**/*'
+ files:
+   - '**/*'
+
+cache:
+ paths:
+   - 'node_modules/**/*'
+   - '.next/cache/**/*'
