@@ -45,7 +45,8 @@ export default function ContactForm() {
         formDataToSend.append('image', image);
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
+      const NEXT_PUBLIC_API_URL = "http://contact-system-backend-env-1.eba-7qxzuebj.us-east-2.elasticbeanstalk.com/";
+      const response = await fetch(`${NEXT_PUBLIC_API_URL}/api/contact`, {
         method: 'POST',
         body: formDataToSend,
       });
