@@ -1,10 +1,10 @@
 // src/app/page.tsx
-import ContactForm from './components/contactform';
+import LandingPage from './components/landingPage';
 
 export default function Home() {
     return (
       <main>
-        <ContactForm />
+        <LandingPage />
       </main>
     );
   }
